@@ -1,303 +1,402 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Happy Birthday My Sister 🎂</title>  <!-- Google Font -->  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">  <style>
+  <title>Happy Birthday Mitali 🎉</title>
+  <style>
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-      color: #333;
+      background: #ffd6e8; /* light pink for first message */
+      color: #fff;
       text-align: center;
       overflow-x: hidden;
     }
 
-    .container {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-    }
-
-    h1 {
-      font-size: 3rem;
-      color: #fff;
-      text-shadow: 2px 2px 10px rgba(0,0,0,0.25);
-      margin-bottom: 5px;
-    }
-
-    h2 {
-      font-size: 1.6rem;
-      color: #fff;
-      margin-bottom: 15px;
-    }
-
-    .photo {
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 6px solid #fff;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-      margin-bottom: 20px;
-      background: #fff;
-    }
-
-    .photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    p {
-      max-width: 650px;
-      font-size: 1.1rem;
-      background: rgba(255,255,255,0.9);
-      padding: 22px;
-      border-radius: 15px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-      line-height: 1.6;
-    }
-
-    .btn {
-      margin-top: 25px;
-      padding: 14px 30px;
-      font-size: 1rem;
-      border: none;
-      border-radius: 30px;
-      cursor: pointer;
-      background: #ff5f6d;
-      color: #fff;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-      transition: all 0.25s ease;
-    }
-
-    .btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.35);
-    }
-
-    /* Balloons */
-    .balloons {
+    /* Floating hearts background */
+    .hearts {
       position: fixed;
-      bottom: -150px;
-      width: 100%;
-      display: flex;
-      justify-content: space-around;
-      pointer-events: none;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
     }
 
-    .balloon {
-      width: 70px;
-      height: 90px;
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: pink;
+      opacity: 0.3;
+      transform: rotate(45deg);
+      animation: float 18s linear infinite;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: pink;
       border-radius: 50%;
-      animation: float 9s infinite ease-in;
     }
 
-    .balloon:nth-child(1) { background: #ff6f61; animation-delay: 0s; }
-    .balloon:nth-child(2) { background: #6a82fb; animation-delay: 2s; }
-    .balloon:nth-child(3) { background: #fbc531; animation-delay: 4s; }
-    .balloon:nth-child(4) { background: #4cd137; animation-delay: 1s; }
+    .heart::before { top: -10px; left: 0; }
+    .heart::after { left: -10px; top: 0; }
 
     @keyframes float {
-      0% { transform: translateY(0); opacity: 0; }
-      20% { opacity: 1; }
-      100% { transform: translateY(-130vh); opacity: 0; }
+      from { transform: translateY(100vh) rotate(45deg); }
+      to { transform: translateY(-120vh) rotate(45deg); }
     }
 
-    footer {
-      margin-top: 30px;
-      font-size: 0.9rem;
-      color: #fff;
-      opacity: 0.9;
-    }
-      
-    /* Confetti */
-    .confetti {
+    .overlay {
       position: fixed;
-      top: -10px;
-      width: 10px;
-      height: 10px;
-      background: red;
-      opacity: 0.8;
-      animation: fall linear infinite;
-      z-index: 9999;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
     }
 
-    @keyframes fall {
-      to {
-        transform: translateY(110vh) rotate(360deg);
-      }
-    }
-
-    /* Fireworks */
-    .firework {
-      position: fixed;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      animation: explode 1s ease-out forwards;
-      z-index: 9999;
-    }
-
-    @keyframes explode {
-      from { transform: scale(1); opacity: 1; }
-      to { transform: scale(20); opacity: 0; }
-    }
-    
-    .gallery {
-      width: 260px;
-      height: 260px;
-      border-radius: 20px;
-      overflow: hidden;
-      position: relative;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.35);
-      margin-bottom: 20px;
+    .popup {
       background: #fff;
+      color: #333;
+      padding: 25px;
+      border-radius: 15px;
+      max-width: 320px;
+      animation: pop 0.5s ease;
+    }
+
+    .popup h2 {
+      margin-top: 0;
+      color: #ff5e78;
+    }
+
+    .popup button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      background: #ff5e78;
+      color: #fff;
+      font-size: 16px;
+    }
+
+    @keyframes pop {
+      from { transform: scale(0.5); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    h1 { font-size: 2.2rem; margin-top: 30px; }
+
+    .countdown { font-size: 1.2rem; margin: 15px 0; }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 10px;
+      padding: 15px;
     }
 
     .gallery img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      position: absolute;
-      opacity: 0;
-      transition: opacity 1s ease-in-out;
+      border-radius: 12px;
     }
 
-    .gallery img.active {
-      opacity: 1;
-    }
-  
-    .cake-section { margin-top: 30px; }
     .cake {
-      width: 180px;
-      margin: auto;
-      cursor: pointer;
-      position: relative;
+      margin: 30px 0;
     }
-    .layer {
-      height: 45px;
-      border-radius: 10px;
-      margin-bottom: 5px;
-      background: linear-gradient(90deg,#ffb347,#ffcc33);
-    }
-    .layer2 { background: linear-gradient(90deg,#ff6f91,#ff9671); }
-    .layer3 { background: linear-gradient(90deg,#845ec2,#d65db1); }
-    .candle {
-      width: 10px;
-      height: 30px;
+
+    .cake button {
+      padding: 12px 25px;
+      border-radius: 25px;
+      border: none;
+      font-size: 16px;
       background: #fff;
-      position: absolute;
-      top: -30px;
-      left: 50%;
-      transform: translateX(-50%);
+      color: #ff5e78;
     }
-    .cake.cut .layer {
-      animation: cut 1s forwards;
+
+    .message {
+      display: none;
+      padding: 20px;
+      font-size: 1.1rem;
+      line-height: 1.6;
     }
-    @keyframes cut {
-      to { transform: translateX(-200px) rotate(-10deg); opacity:0; }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Hearts -->
+  <div class="hearts">
+    <div class="heart" style="left:10%; animation-duration:22s;"></div>
+    <div class="heart" style="left:30%; animation-duration:18s;"></div>
+    <div class="heart" style="left:50%; animation-duration:25s;"></div>
+    <div class="heart" style="left:70%; animation-duration:20s;"></div>
+    <div class="heart" style="left:85%; animation-duration:28s;"></div>
+  </div>
+
+  <!-- Popup -->
+  <div class="overlay" id="overlay">
+    <div class="popup" id="popupBox">
+      <h2 id="popupTitle">🎉 Surprise 🎉</h2>
+      <p id="popupText">It's your special day Gollu! 💖</p>
+      <div id="popupButtons">
+        <button onclick="startSequence()">Open 🎁</button>
+      </div>
+    </div>
+  </div>
+
+  
+
+  <!-- Gallery -->
+  
+
+  <!-- Cake -->
+  <div class="cake">
+    <button onclick="cutCake()">🎂 Cut the Cake</button>
+  </div>
+
+  <!-- Final Message -->
+  <div class="message" id="finalMessage">
+    <p>
+      Tum sirf meri behan nahi ho 💕, tum meri best friend ho.
+      <br><br>
+      Happy 17th Birthday Mitali 🎉
+      <br>
+      Mahadev always bless you 🙏
+      <br>
+      May all your wishes come true ✨
+    </p>
+  </div>
+
+  <script>
+    const popupText = document.getElementById('popupText');
+    const popupButtons = document.getElementById('popupButtons');
+
+    function startSequence() {
+      popupButtons.innerHTML = '';
+      setTimeout(() => {
+        popupText.innerText = "I made something special for you, because you are special to me! 💕";
+      }, 5000);
+
+      setTimeout(() => {
+        popupText.innerText = "Do you wanna see what I made?? 💝";
+        popupButtons.innerHTML = `
+          <button style=\"background:#ff5e78;color:#fff;margin-right:10px;\" onclick=\"yesFlow()\">Yes!</button>
+          <button style=\"background:#4a90e2;color:#fff;\" onclick=\"noFlow1()\">No</button>
+        `;
+      }, 10000);
     }
-  </style></head>
-<body>  <!-- Background Music -->  <audio autoplay loop>
-    <!-- MP3 file ka naam yaha change karo -->
-    <source src="happy-birthday.mp3" type="audio/mpeg">
-  </audio>  <div class="container">
-    <h1>🎉 Happy Birthday 🎉</h1>
-    <h2 id="name">Mitali 💖</h2><!-- Sister Photo -->
-<div class="gallery">
 
-  <img src="photo1.jpg" class="active" />
-  <img src="photo2.jpg" />
-  <img src="photo3.jpg" />
-  <img src="photo4.jpg" />
-  <img src="photo5.jpg" />
-</div><p id="message">
-
-<strong>Happy 17th Birthday! 🎉</strong><br><br> May this special day bring you endless happiness, new dreams, and beautiful opportunities.<br> Keep believing in yourself and chasing your goals with confidence.<br><br> Wishing you a year filled with success, good health, and unforgettable memories.<br> May Mahadev always bless you and may all your wishes come true. 🙏✨<br><br> You are not just my sister, but also my best friend — I’m truly grateful to have you in my life. 💖
-
-</p><button class="btn" onclick="surprise()">Click for Surprise 🎁</button>
-
-<footer>
-  Made with ❤️ by your loving brother
-</footer>
-<div class="cake-section" id="cakeSection">
-
-<h2 id="cakeTitle">🎂 Cut the Cake 🎂</h2>
-<div class="cake" id="cake" onclick="cutCake()">
-<div class="layer"></div>
-<div class="layer"></div>
-<div class="layer"></div>
-<div class="candle"></div>
-</div>
-<p id="cakeMsg">Tap the cake to cut 🎉</p>
-</div><div id="afterCakeMsg" style="display:none; max-width:700px; margin:30px auto; background:rgba(255,255,255,.95); padding:25px; border-radius:18px; box-shadow:0 15px 30px rgba(0,0,0,.25); font-size:1.1rem;">
-<strong>🎉 Happy 17th Birthday Mitali 🎉</strong><br><br>
-May this special day bring you endless happiness, new dreams, and beautiful opportunities.<br>
-Keep believing in yourself and chasing your goals with confidence.<br><br>
-Wishing you a year filled with success, good health, and unforgettable memories.<br>
-May Mahadev always bless you and may all your wishes come true. 🙏✨<br><br>
-You are not just my sister, but also my best friend — I’m truly grateful to have you in my life. 💖
-</div></div>
-    <p id="cakeMsg">Tap the cake to cut 🎉</p>
-  </div></div><div class="balloons">
-    <div class="balloon"></div>
-    <div class="balloon"></div>
-    <div class="balloon"></div>
-    <div class="balloon"></div>
-  </div>  <script>
-// Confetti Generator
-for (let i = 0; i < 80; i++) {
-  const conf = document.createElement('div');
-  conf.className = 'confetti';
-  conf.style.left = Math.random() * 100 + 'vw';
-  conf.style.backgroundColor = `hsl(${Math.random()*360},100%,50%)`;
-  conf.style.animationDuration = (Math.random() * 3 + 2) + 's';
-  document.body.appendChild(conf);
-}
-
-// Fireworks on click
-function fireworks() {
-  for (let i = 0; i < 20; i++) {
-    const fw = document.createElement('div');
-    fw.className = 'firework';
-    fw.style.left = 50 + (Math.random()*20-10) + 'vw';
-    fw.style.top = 50 + (Math.random()*20-10) + 'vh';
-    fw.style.backgroundColor = `hsl(${Math.random()*360},100%,50%)`;
-    document.body.appendChild(fw);
-    setTimeout(() => fw.remove(), 1000);
-  }
-}
-
-
-    let index = 0;
-const photos = document.querySelectorAll('.gallery img');
-setInterval(() => {
-  photos[index].classList.remove('active');
-  index = (index + 1) % photos.length;
-  photos[index].classList.add('active');
-}, 3000);
-
-function cutCake(){
- document.getElementById('cake').classList.add('cut');
- document.getElementById('cakeMsg').innerHTML='🎉 Cake Cut Successfully! 🎉';
- fireworks();
- 
- setTimeout(()=>{
-   document.getElementById('cakeSection').style.display='none';
-   document.getElementById('afterCakeMsg').style.display='block';
-   fireworks();
- },1200);
-}
-
-function surprise() {
-      document.getElementById('message').innerHTML =
-        "Tum sirf meri sister nahi ho, meri best friend ho 💕<br><br>" +
-        "Har problem me tumhara saath aur har khushi me tumhari hasi meri strength hai 💪✨<br><br>" +
-        "Enjoy your special day! Cake ka bada piece mera 😄🎂🎈";
+    function yesFlow() {
+      popupText.innerText = "I have something magical for you ✨";
+      setTimeout(() => {
+        document.getElementById('overlay').style.display = 'none';
+        startMainExperience();
+      }, 5000);
     }
-  </script></body>
+
+    function noFlow1() {
+      popupText.innerText = "Are you sure you don't wanna see what I made for you? 🤍";
+      popupButtons.innerHTML = `
+        <button style=\"background:#ff5e78;color:#fff;margin-right:10px;\" onclick=\"yesFlow()\">Yes!</button>
+        <button style=\"background:#4a90e2;color:#fff;\" onclick=\"noFlow2()\">No</button>
+      `;
+    }
+
+    function noFlow2() {
+      popupText.innerText = "Are you sure this is your final decision? 😢";
+      popupButtons.innerHTML = `
+        <button style=\"background:#ff5e78;color:#fff;margin-right:10px;\" onclick=\"yesFlow()\">Sure</button>
+        <button style=\"background:#4a90e2;color:#fff;\" onclick=\"callMe()\">Not Sure</button>
+      `;
+    }
+
+    function callMe() {
+      window.location.href = 'tel:8160774977';
+    }
+
+    function cutCake() {
+      document.querySelector('.cake').style.display = 'none';
+      document.getElementById('finalMessage').style.display = 'block';
+      alert('🎉 Happy Birthday Mitali 🎉');
+    }
+
+    const birthday = new Date('Feb 11, 2026 00:00:00').getTime();
+    setInterval(() => {
+      const now = new Date().getTime();
+      const diff = birthday - now;
+      if (diff < 0) {
+        document.getElementById('countdown').innerHTML = "🎉 It's Birthday Time! 🎉";
+        return;
+      }
+      const d = Math.floor(diff / (1000*60*60*24));
+      const h = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+      const m = Math.floor((diff % (1000*60*60)) / (1000*60));
+      const s = Math.floor((diff % (1000*60)) / 1000);
+      document.getElementById('countdown').innerHTML = `${d}d ${h}h ${m}m ${s}s`;
+    }, 1000);
+  
+    function showDecorateButton(ui) {
+      const btn = document.createElement('button');
+      btn.innerText = '✨ Decorate';
+      btn.style.cssText = 'padding:14px 28px;border-radius:22px;background:#ff5e78;color:#fff;font-size:16px;border:none;cursor:pointer;animation:pop .4s;';
+      ui.appendChild(btn);
+      btn.onclick = () => {
+        btn.style.transform = 'scale(0.92)';
+        ui.innerHTML = '';
+        showDecoration();
+        showFlyButton(ui);
+      };
+    };
+    };
+    }
+
+    function showDecoration() {
+      const deco = document.createElement('div');
+      deco.id = 'deco';
+      deco.innerText = 'HAPPY BIRTHDAY';
+      deco.style.cssText = 'position:fixed;bottom:-60px;left:50%;transform:translateX(-50%);font-size:32px;letter-spacing:3px;color:#ff5e78;font-weight:700;transition:bottom 1.5s ease;';
+      document.body.appendChild(deco);
+      setTimeout(()=>deco.style.bottom='40px',100);
+    }
+
+    function showFlyButton(ui) {
+      const btn = document.createElement('button');
+      btn.innerText = '🎈 Fly the Balloons';
+      btn.style.cssText = 'padding:14px 28px;border-radius:22px;background:#ff5e78;color:#fff;font-size:16px;border:none;animation:pop .4s;';
+      ui.appendChild(btn);
+      btn.onclick = () => {
+        btn.style.transform = 'scale(0.9)';
+        btn.remove();
+        flyBalloons();
+        showCakeButton(ui);
+      };
+    };
+    }
+
+    function flyBalloons() {
+      const name = 'MITALI'.split('');
+      let placed = 0;
+      for (let i=0;i<10;i++){
+        const b = document.createElement('div');
+        b.style.cssText = `position:fixed;bottom:-40px;left:${Math.random()*100}%;width:24px;height:30px;background:#ff9acb;border-radius:50% 50% 50% 50%;opacity:.9;transition:transform 6s linear;`;
+        document.body.appendChild(b);
+        setTimeout(()=>b.style.transform=`translateY(-${window.innerHeight-120}px)`,100);
+        if(placed<name.length){
+          const letter = document.createElement('div');
+          letter.innerText = name[placed++];
+          letter.style.cssText='position:fixed;left:50%;top:90px;transform:translateX(-50%);color:#ff5e78;font-size:28px;font-weight:700;';
+          document.body.appendChild(letter);
+        }
+      }
+    }
+
+    function showCakeButton(ui){
+      const btn = document.createElement('button');
+      btn.innerText = '🎂 Let’s cut the cake Gollu';
+      btn.style.cssText = 'padding:14px 28px;border-radius:22px;background:#ff5e78;color:#fff;font-size:16px;border:none;animation:pop .4s;';
+      ui.appendChild(btn);
+      btn.onclick = ()=>{
+        btn.remove();
+        showCake();
+        showMsgButton(ui);
+      };
+    };
+    }
+
+    function showCake(){
+      const cake = document.createElement('div');
+      cake.innerHTML = '<div style="font-family:cursive;color:#6b3e26">Mitali</div><div style="font-size:18px">17th</div>';
+      cake.style.cssText='position:fixed;bottom:20px;left:50%;transform:translateX(-50%);width:180px;height:140px;background:#6b3e26;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;';
+      document.body.appendChild(cake);
+    }
+
+    function showMsgButton(ui){
+      const btn = document.createElement('button');
+      btn.innerText = '💌 I have a msg for you';
+      btn.style.cssText = 'padding:14px 28px;border-radius:22px;background:#ff5e78;color:#fff;font-size:16px;border:none;animation:pop .4s;';
+      ui.appendChild(btn);
+      btn.onclick = ()=>{
+        ui.remove();
+        document.querySelectorAll('#deco').forEach(e=>e.remove());
+        showFinalMsg();
+      };
+    };
+    }
+
+    function showFinalMsg(){
+      const box=document.createElement('div');
+      box.style.cssText='position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.6)';
+      box.innerHTML='<div style="background:#fff;color:#333;padding:24px;border-radius:16px;max-width:320px">[Your birthday message here]</div>';
+      document.body.appendChild(box);
+    }
+  </script>
+</body>
+
+  <script>
+    function startMainExperience() {
+      // ensure nothing shows behind popup
+      document.querySelectorAll('#uiArea').forEach(e=>e.remove());
+
+      // lights off moment
+      document.body.style.transition = 'background 0.8s';
+      document.body.style.background = '#000';
+
+      const ui = document.createElement('div');
+      ui.id = 'uiArea';
+      ui.style.cssText = 'position:fixed;top:30px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;gap:14px;align-items:center;z-index:1000;';
+      document.body.appendChild(ui);
+
+      const lightsBtn = document.createElement('button');
+      lightsBtn.innerText = '💡 Lights On';
+      lightsBtn.style.cssText = 'padding:14px 28px;border-radius:22px;background:#b3e5ff;color:#fff;font-size:16px;border:none;cursor:pointer;animation:pop .4s;';
+      ui.appendChild(lightsBtn);
+
+      lightsBtn.onclick = () => {
+        lightsBtn.style.transform = 'scale(0.92)';
+        setTimeout(() => {
+          document.body.style.background = '#ffd6e8';
+          ui.innerHTML = '';
+          floatingBubbles();
+          showMusicButton(ui);
+        }, 200);
+      };
+    }, 300);
+      };
+    }, 300);
+      };
+    }
+
+    function floatingBubbles() {
+      for (let i = 0; i < 15; i++) {
+        const b = document.createElement('div');
+        b.style.cssText = `position:fixed;bottom:-20px;left:${Math.random()*100}%;width:12px;height:12px;background:#fff;border-radius:50%;opacity:0.4;animation:float ${10+Math.random()*10}s linear infinite;`;
+        document.body.appendChild(b);
+      }
+    }
+
+    function showMusicButton(ui) {
+      const musicBtn = document.createElement('button');
+      musicBtn.innerText = '🎵 Play Music';
+      musicBtn.style.cssText = 'padding:14px 28px;border-radius:22px;background:#ff5e78;color:#fff;font-size:16px;border:none;cursor:pointer;animation:pop .4s;';
+      ui.appendChild(musicBtn);
+
+      const audio = new Audio('music.mp3');
+      musicBtn.onclick = () => {
+        musicBtn.style.transform = 'scale(0.92)';
+        audio.loop = true;
+        audio.play();
+        ui.innerHTML = '';
+        showDecorateButton(ui);
+      };
+    }, 300);
+      };
+    }, 500);
+      };
+    }
+  </script>
+</body>
 </html>
