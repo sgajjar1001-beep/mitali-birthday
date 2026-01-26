@@ -138,7 +138,7 @@
   </div>
 
   <!-- Popup -->
-  <div class="overlay" id="overlay">
+  <div class="overlay" id="overlay" style="pointer-events:auto;">
     <div class="popup" id="popupBox">
       <h2 id="popupTitle">🎉 Surprise 🎉</h2>
       <p id="popupText">It's your special day Gollu! 💖</p>
@@ -192,10 +192,13 @@
 
     function yesFlow() {
       popupText.innerText = "I have something magical for you ✨";
+      popupButtons.innerHTML = '';
       setTimeout(() => {
-        document.getElementById('overlay').style.display = 'none';
+        const overlay = document.getElementById('overlay');
+        overlay.style.display = 'none';
+        overlay.style.pointerEvents = 'none';
         startMainExperience();
-      }, 5000);
+      }, 3000);
     }
 
     function noFlow1() {
@@ -250,8 +253,6 @@
         showDecoration();
         showFlyButton(ui);
       };
-    };
-    };
     }
 
     function showDecoration() {
@@ -274,7 +275,6 @@
         flyBalloons();
         showCakeButton(ui);
       };
-    };
     }
 
     function flyBalloons() {
@@ -304,7 +304,6 @@
         showCake();
         showMsgButton(ui);
       };
-    };
     }
 
     function showCake(){
@@ -324,7 +323,6 @@
         document.querySelectorAll('#deco').forEach(e=>e.remove());
         showFinalMsg();
       };
-    };
     }
 
     function showFinalMsg(){
@@ -338,36 +336,32 @@
 
   <script>
     function startMainExperience() {
-      // ensure nothing shows behind popup
-      document.querySelectorAll('#uiArea').forEach(e=>e.remove());
+      // safety cleanup
+      document.querySelectorAll('#uiArea').forEach(e => e.remove());
 
-      // lights off moment
       document.body.style.transition = 'background 0.8s';
       document.body.style.background = '#000';
 
       const ui = document.createElement('div');
       ui.id = 'uiArea';
-      ui.style.cssText = 'position:fixed;top:30px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;gap:14px;align-items:center;z-index:1000;';
+      ui.style.cssText = 'position:fixed;top:40px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;gap:14px;align-items:center;z-index:9999;pointer-events:auto;';
       document.body.appendChild(ui);
 
       const lightsBtn = document.createElement('button');
+      lightsBtn.type = 'button';
       lightsBtn.innerText = '💡 Lights On';
-      lightsBtn.style.cssText = 'padding:14px 28px;border-radius:22px;background:#b3e5ff;color:#fff;font-size:16px;border:none;cursor:pointer;animation:pop .4s;';
+      lightsBtn.style.cssText = 'padding:14px 28px;border-radius:22px;background:#b3e5ff;color:#fff;font-size:16px;border:none;cursor:pointer;pointer-events:auto;';
       ui.appendChild(lightsBtn);
 
-      lightsBtn.onclick = () => {
-        lightsBtn.style.transform = 'scale(0.92)';
+      lightsBtn.addEventListener('click', () => {
+        lightsBtn.style.transform = 'scale(0.95)';
         setTimeout(() => {
           document.body.style.background = '#ffd6e8';
           ui.innerHTML = '';
           floatingBubbles();
           showMusicButton(ui);
         }, 200);
-      };
-    }, 300);
-      };
-    }, 300);
-      };
+      });
     }
 
     function floatingBubbles() {
@@ -391,10 +385,6 @@
         audio.play();
         ui.innerHTML = '';
         showDecorateButton(ui);
-      };
-    }, 300);
-      };
-    }, 500);
       };
     }
   </script>
