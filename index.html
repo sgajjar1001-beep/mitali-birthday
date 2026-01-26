@@ -3,172 +3,193 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Happy Birthday Mitali 🎉</title>
+  <title>Special Day – Mitali 💖</title>
+
   <style>
+    * { box-sizing: border-box; }
+
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
-      background: #ffd6e8; /* light pink for first message */
-      color: #fff;
-      text-align: center;
+      background: #ffd6e8; /* light pink from start */
       overflow-x: hidden;
+      text-align: center;
+      transition: filter 0.6s ease;
     }
 
-    /* Floating hearts background */
+    /* floating hearts */
     .hearts {
       position: fixed;
       inset: 0;
       z-index: 0;
-      overflow: hidden;
+      pointer-events: none;
     }
 
     .heart {
       position: absolute;
-      width: 20px;
-      height: 20px;
+      width: 18px;
+      height: 18px;
       background: pink;
-      opacity: 0.3;
+      opacity: 0.35;
       transform: rotate(45deg);
-      animation: float 18s linear infinite;
+      animation: float 20s linear infinite;
     }
 
     .heart::before,
     .heart::after {
       content: '';
       position: absolute;
-      width: 20px;
-      height: 20px;
+      width: 18px;
+      height: 18px;
       background: pink;
       border-radius: 50%;
     }
 
-    .heart::before { top: -10px; left: 0; }
-    .heart::after { left: -10px; top: 0; }
+    .heart::before { top: -9px; left: 0; }
+    .heart::after { left: -9px; top: 0; }
 
     @keyframes float {
-      from { transform: translateY(100vh) rotate(45deg); }
-      to { transform: translateY(-120vh) rotate(45deg); }
+      from { transform: translateY(110vh) rotate(45deg); }
+      to   { transform: translateY(-120vh) rotate(45deg); }
     }
 
+    /* popup */
     .overlay {
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.7);
+      background: rgba(0,0,0,0.55);
       display: flex;
       align-items: center;
       justify-content: center;
-      z-index: 999;
+      z-index: 1000;
     }
 
     .popup {
       background: #fff;
       color: #333;
-      padding: 25px;
-      border-radius: 15px;
+      padding: 26px;
+      border-radius: 16px;
       max-width: 320px;
       animation: pop 0.5s ease;
     }
 
-    .popup h2 {
-      margin-top: 0;
-      color: #ff5e78;
-    }
+    .popup h2 { color: #ff5e78; margin-top: 0; }
 
     .popup button {
-      margin-top: 15px;
-      padding: 10px 20px;
+      margin-top: 16px;
+      padding: 10px 22px;
+      border-radius: 22px;
       border: none;
-      border-radius: 20px;
       background: #ff5e78;
       color: #fff;
       font-size: 16px;
+      cursor: pointer;
     }
 
     @keyframes pop {
-      from { transform: scale(0.5); opacity: 0; }
+      from { transform: scale(0.6); opacity: 0; }
       to { transform: scale(1); opacity: 1; }
     }
 
-    h1 { font-size: 2.2rem; margin-top: 30px; }
-
-    .countdown { font-size: 1.2rem; margin: 15px 0; }
-
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: 10px;
-      padding: 15px;
+    /* fixed UI area for all buttons */
+    #uiArea {
+      position: fixed;
+      top: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      z-index: 2000;
     }
 
-    .gallery img {
-      width: 100%;
-      border-radius: 12px;
-    }
-
-    .cake {
-      margin: 30px 0;
-    }
-
-    .cake button {
-      padding: 12px 25px;
-      border-radius: 25px;
+    .ui-btn {
+      padding: 14px 30px;
+      border-radius: 26px;
       border: none;
       font-size: 16px;
-      background: #fff;
-      color: #ff5e78;
+      color: #fff;
+      background: #ff5e78;
+      cursor: pointer;
+      animation: pop 0.4s ease;
     }
 
-    .message {
-      display: none;
-      padding: 20px;
-      font-size: 1.1rem;
+    .ui-btn.blue { background: #6ecbff; }
+
+    /* decorations */
+    #deco {
+      position: fixed;
+      bottom: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 34px;
+      letter-spacing: 4px;
+      font-weight: 700;
+      color: #ff5e78;
+      transition: bottom 1.6s ease;
+      z-index: 1500;
+    }
+
+    /* cake */
+    .cake {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 150px;
+      background: #6b3e26;
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      z-index: 1500;
+      animation: pop 0.6s ease;
+    }
+
+    /* final msg */
+    .final-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 3000;
+    }
+
+    .final-box {
+      background: #fff;
+      color: #333;
+      padding: 26px;
+      border-radius: 18px;
+      max-width: 340px;
       line-height: 1.6;
     }
   </style>
 </head>
 <body>
 
-  <!-- Floating Hearts -->
+  <!-- hearts -->
   <div class="hearts">
-    <div class="heart" style="left:10%; animation-duration:22s;"></div>
-    <div class="heart" style="left:30%; animation-duration:18s;"></div>
-    <div class="heart" style="left:50%; animation-duration:25s;"></div>
-    <div class="heart" style="left:70%; animation-duration:20s;"></div>
-    <div class="heart" style="left:85%; animation-duration:28s;"></div>
+    <div class="heart" style="left:10%;"></div>
+    <div class="heart" style="left:30%; animation-duration:24s"></div>
+    <div class="heart" style="left:50%; animation-duration:18s"></div>
+    <div class="heart" style="left:70%; animation-duration:26s"></div>
+    <div class="heart" style="left:85%; animation-duration:22s"></div>
   </div>
 
-  <!-- Popup -->
-  <div class="overlay" id="overlay" style="pointer-events:auto;">
-    <div class="popup" id="popupBox">
-      <h2 id="popupTitle">🎉 Surprise 🎉</h2>
+  <!-- popup -->
+  <div class="overlay" id="overlay">
+    <div class="popup">
+      <h2>🎉 Surprise 🎉</h2>
       <p id="popupText">It's your special day Gollu! 💖</p>
       <div id="popupButtons">
         <button onclick="startSequence()">Open 🎁</button>
       </div>
     </div>
-  </div>
-
-  
-
-  <!-- Gallery -->
-  
-
-  <!-- Cake -->
-  <div class="cake">
-    <button onclick="cutCake()">🎂 Cut the Cake</button>
-  </div>
-
-  <!-- Final Message -->
-  <div class="message" id="finalMessage">
-    <p>
-      Tum sirf meri behan nahi ho 💕, tum meri best friend ho.
-      <br><br>
-      Happy 17th Birthday Mitali 🎉
-      <br>
-      Mahadev always bless you 🙏
-      <br>
-      May all your wishes come true ✨
-    </p>
   </div>
 
   <script>
@@ -177,26 +198,26 @@
 
     function startSequence() {
       popupButtons.innerHTML = '';
+
       setTimeout(() => {
-        popupText.innerText = "I made something special for you, because you are special to me! 💕";
+        popupText.innerText = 'I made something special for you, because you are special to me! 💕';
       }, 5000);
 
       setTimeout(() => {
-        popupText.innerText = "Do you wanna see what I made?? 💝";
+        popupText.innerText = 'Do you wanna see what I made?? 💝';
         popupButtons.innerHTML = `
-          <button style=\"background:#ff5e78;color:#fff;margin-right:10px;\" onclick=\"yesFlow()\">Yes!</button>
-          <button style=\"background:#4a90e2;color:#fff;\" onclick=\"noFlow1()\">No</button>
+          <button onclick="yesFlow()">Yes!</button>
+          <button style="background:#6ecbff" onclick="noFlow1()">No</button>
         `;
       }, 10000);
     }
 
     function yesFlow() {
-      popupText.innerText = "I have something magical for you ✨";
+      popupText.innerText = 'I have something magical for you ✨';
       popupButtons.innerHTML = '';
+
       setTimeout(() => {
-        const overlay = document.getElementById('overlay');
-        overlay.style.display = 'none';
-        overlay.style.pointerEvents = 'none';
+        document.getElementById('overlay').remove();
         startMainExperience();
       }, 3000);
     }
@@ -204,16 +225,16 @@
     function noFlow1() {
       popupText.innerText = "Are you sure you don't wanna see what I made for you? 🤍";
       popupButtons.innerHTML = `
-        <button style=\"background:#ff5e78;color:#fff;margin-right:10px;\" onclick=\"yesFlow()\">Yes!</button>
-        <button style=\"background:#4a90e2;color:#fff;\" onclick=\"noFlow2()\">No</button>
+        <button onclick="yesFlow()">Yes!</button>
+        <button style="background:#6ecbff" onclick="noFlow2()">No</button>
       `;
     }
 
     function noFlow2() {
-      popupText.innerText = "Are you sure this is your final decision? 😢";
+      popupText.innerText = 'Are you sure this is your final decision? 😢';
       popupButtons.innerHTML = `
-        <button style=\"background:#ff5e78;color:#fff;margin-right:10px;\" onclick=\"yesFlow()\">Sure</button>
-        <button style=\"background:#4a90e2;color:#fff;\" onclick=\"callMe()\">Not Sure</button>
+        <button onclick="yesFlow()">Sure</button>
+        <button style="background:#6ecbff" onclick="callMe()">Not Sure</button>
       `;
     }
 
@@ -221,57 +242,67 @@
       window.location.href = 'tel:8160774977';
     }
 
-    function cutCake() {
-      document.querySelector('.cake').style.display = 'none';
-      document.getElementById('finalMessage').style.display = 'block';
-      alert('🎉 Happy Birthday Mitali 🎉');
+    /* ===== MAIN EXPERIENCE ===== */
+
+    function startMainExperience() {
+      const ui = document.createElement('div');
+      ui.id = 'uiArea';
+      document.body.appendChild(ui);
+
+      document.body.style.filter = 'brightness(0.35)';
+
+      const lightsBtn = document.createElement('button');
+      lightsBtn.className = 'ui-btn blue';
+      lightsBtn.innerText = '💡 Lights On';
+      ui.appendChild(lightsBtn);
+
+      lightsBtn.onclick = () => {
+        document.body.style.filter = 'brightness(1)';
+        ui.innerHTML = '';
+        showMusicButton(ui);
+      };
     }
 
-    const birthday = new Date('Feb 11, 2026 00:00:00').getTime();
-    setInterval(() => {
-      const now = new Date().getTime();
-      const diff = birthday - now;
-      if (diff < 0) {
-        document.getElementById('countdown').innerHTML = "🎉 It's Birthday Time! 🎉";
-        return;
-      }
-      const d = Math.floor(diff / (1000*60*60*24));
-      const h = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
-      const m = Math.floor((diff % (1000*60*60)) / (1000*60));
-      const s = Math.floor((diff % (1000*60)) / 1000);
-      document.getElementById('countdown').innerHTML = `${d}d ${h}h ${m}m ${s}s`;
-    }, 1000);
-  
+    function showMusicButton(ui) {
+      const btn = document.createElement('button');
+      btn.className = 'ui-btn';
+      btn.innerText = '🎵 Play Music';
+      ui.appendChild(btn);
+
+      const audio = new Audio('music.mp3');
+      btn.onclick = () => {
+        audio.loop = true;
+        audio.play();
+        ui.innerHTML = '';
+        showDecorateButton(ui);
+      };
+    }
+
     function showDecorateButton(ui) {
       const btn = document.createElement('button');
+      btn.className = 'ui-btn';
       btn.innerText = '✨ Decorate';
-      btn.style.cssText = 'padding:14px 28px;border-radius:22px;background:#ff5e78;color:#fff;font-size:16px;border:none;cursor:pointer;animation:pop .4s;';
       ui.appendChild(btn);
+
       btn.onclick = () => {
-        btn.style.transform = 'scale(0.92)';
         ui.innerHTML = '';
-        showDecoration();
+        const deco = document.createElement('div');
+        deco.id = 'deco';
+        deco.innerText = 'HAPPY BIRTHDAY';
+        document.body.appendChild(deco);
+        setTimeout(() => deco.style.bottom = '40px', 100);
         showFlyButton(ui);
       };
     }
 
-    function showDecoration() {
-      const deco = document.createElement('div');
-      deco.id = 'deco';
-      deco.innerText = 'HAPPY BIRTHDAY';
-      deco.style.cssText = 'position:fixed;bottom:-60px;left:50%;transform:translateX(-50%);font-size:32px;letter-spacing:3px;color:#ff5e78;font-weight:700;transition:bottom 1.5s ease;';
-      document.body.appendChild(deco);
-      setTimeout(()=>deco.style.bottom='40px',100);
-    }
-
     function showFlyButton(ui) {
       const btn = document.createElement('button');
+      btn.className = 'ui-btn';
       btn.innerText = '🎈 Fly the Balloons';
-      btn.style.cssText = 'padding:14px 28px;border-radius:22px;background:#ff5e78;color:#fff;font-size:16px;border:none;animation:pop .4s;';
       ui.appendChild(btn);
+
       btn.onclick = () => {
-        btn.style.transform = 'scale(0.9)';
-        btn.remove();
+        ui.innerHTML = '';
         flyBalloons();
         showCakeButton(ui);
       };
@@ -279,113 +310,54 @@
 
     function flyBalloons() {
       const name = 'MITALI'.split('');
-      let placed = 0;
-      for (let i=0;i<10;i++){
-        const b = document.createElement('div');
-        b.style.cssText = `position:fixed;bottom:-40px;left:${Math.random()*100}%;width:24px;height:30px;background:#ff9acb;border-radius:50% 50% 50% 50%;opacity:.9;transition:transform 6s linear;`;
-        document.body.appendChild(b);
-        setTimeout(()=>b.style.transform=`translateY(-${window.innerHeight-120}px)`,100);
-        if(placed<name.length){
-          const letter = document.createElement('div');
-          letter.innerText = name[placed++];
-          letter.style.cssText='position:fixed;left:50%;top:90px;transform:translateX(-50%);color:#ff5e78;font-size:28px;font-weight:700;';
-          document.body.appendChild(letter);
-        }
-      }
+      let i = 0;
+
+      name.forEach(letter => {
+        const l = document.createElement('div');
+        l.innerText = letter;
+        l.style.cssText = 'position:fixed;top:90px;left:' + (50 + (i++ * 26 - 78)) + '%;font-size:26px;color:#ff5e78;font-weight:700;';
+        document.body.appendChild(l);
+      });
     }
 
-    function showCakeButton(ui){
+    function showCakeButton(ui) {
       const btn = document.createElement('button');
+      btn.className = 'ui-btn';
       btn.innerText = '🎂 Let’s cut the cake Gollu';
-      btn.style.cssText = 'padding:14px 28px;border-radius:22px;background:#ff5e78;color:#fff;font-size:16px;border:none;animation:pop .4s;';
       ui.appendChild(btn);
-      btn.onclick = ()=>{
-        btn.remove();
-        showCake();
+
+      btn.onclick = () => {
+        ui.innerHTML = '';
+        const cake = document.createElement('div');
+        cake.className = 'cake';
+        cake.innerHTML = '<div style="font-family:cursive;font-size:24px">Mitali</div><div>17th 🎂</div>';
+        document.body.appendChild(cake);
         showMsgButton(ui);
       };
     }
 
-    function showCake(){
-      const cake = document.createElement('div');
-      cake.innerHTML = '<div style="font-family:cursive;color:#6b3e26">Mitali</div><div style="font-size:18px">17th</div>';
-      cake.style.cssText='position:fixed;bottom:20px;left:50%;transform:translateX(-50%);width:180px;height:140px;background:#6b3e26;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;';
-      document.body.appendChild(cake);
-    }
-
-    function showMsgButton(ui){
+    function showMsgButton(ui) {
       const btn = document.createElement('button');
+      btn.className = 'ui-btn';
       btn.innerText = '💌 I have a msg for you';
-      btn.style.cssText = 'padding:14px 28px;border-radius:22px;background:#ff5e78;color:#fff;font-size:16px;border:none;animation:pop .4s;';
       ui.appendChild(btn);
-      btn.onclick = ()=>{
+
+      btn.onclick = () => {
         ui.remove();
-        document.querySelectorAll('#deco').forEach(e=>e.remove());
+        document.querySelectorAll('#deco, .cake').forEach(e => e.remove());
         showFinalMsg();
       };
     }
 
-    function showFinalMsg(){
-      const box=document.createElement('div');
-      box.style.cssText='position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.6)';
-      box.innerHTML='<div style="background:#fff;color:#333;padding:24px;border-radius:16px;max-width:320px">[Your birthday message here]</div>';
+    function showFinalMsg() {
+      const box = document.createElement('div');
+      box.className = 'final-overlay';
+      box.innerHTML = `
+        <div class="final-box">
+          <b>Happy 17th Birthday Mitali 🎉</b><br><br>
+          [Yahan tum apna final birthday message likh sakte ho]
+        </div>`;
       document.body.appendChild(box);
-    }
-  </script>
-</body>
-
-  <script>
-    function startMainExperience() {
-      // safety cleanup
-      document.querySelectorAll('#uiArea').forEach(e => e.remove());
-
-      document.body.style.transition = 'background 0.8s';
-      document.body.style.background = '#000';
-
-      const ui = document.createElement('div');
-      ui.id = 'uiArea';
-      ui.style.cssText = 'position:fixed;top:40px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;gap:14px;align-items:center;z-index:9999;pointer-events:auto;';
-      document.body.appendChild(ui);
-
-      const lightsBtn = document.createElement('button');
-      lightsBtn.type = 'button';
-      lightsBtn.innerText = '💡 Lights On';
-      lightsBtn.style.cssText = 'padding:14px 28px;border-radius:22px;background:#b3e5ff;color:#fff;font-size:16px;border:none;cursor:pointer;pointer-events:auto;';
-      ui.appendChild(lightsBtn);
-
-      lightsBtn.addEventListener('click', () => {
-        lightsBtn.style.transform = 'scale(0.95)';
-        setTimeout(() => {
-          document.body.style.background = '#ffd6e8';
-          ui.innerHTML = '';
-          floatingBubbles();
-          showMusicButton(ui);
-        }, 200);
-      });
-    }
-
-    function floatingBubbles() {
-      for (let i = 0; i < 15; i++) {
-        const b = document.createElement('div');
-        b.style.cssText = `position:fixed;bottom:-20px;left:${Math.random()*100}%;width:12px;height:12px;background:#fff;border-radius:50%;opacity:0.4;animation:float ${10+Math.random()*10}s linear infinite;`;
-        document.body.appendChild(b);
-      }
-    }
-
-    function showMusicButton(ui) {
-      const musicBtn = document.createElement('button');
-      musicBtn.innerText = '🎵 Play Music';
-      musicBtn.style.cssText = 'padding:14px 28px;border-radius:22px;background:#ff5e78;color:#fff;font-size:16px;border:none;cursor:pointer;animation:pop .4s;';
-      ui.appendChild(musicBtn);
-
-      const audio = new Audio('music.mp3');
-      musicBtn.onclick = () => {
-        musicBtn.style.transform = 'scale(0.92)';
-        audio.loop = true;
-        audio.play();
-        ui.innerHTML = '';
-        showDecorateButton(ui);
-      };
     }
   </script>
 </body>
