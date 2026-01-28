@@ -1,117 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Special Day – Mitali 💖</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Special Day 💖</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-  <style>
-    * { box-sizing: border-box; }
+<div id="background"></div>
 
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: #ffd6e8; /* light pink from start */
-      overflow-x: hidden;
-      text-align: center;
-      transition: filter 0.6s ease;
-    }
+<!-- MESSAGE SCREEN (already present behind curtain) -->
+<div id="box">
+  <p id="msg"></p>
+  <div class="choice" id="choices"></div>
+</div>
 
-    /* floating hearts */
-    .hearts {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-    }
+<div id="dark"></div>
+<button id="actionBtn">💡 Lights On</button>
 
-    .heart {
-      position: absolute;
-      width: 18px;
-      height: 18px;
-      background: pink;
-      opacity: 0.35;
-      transform: rotate(45deg);
-      animation: float 20s linear infinite;
-    }
+<!-- CURTAIN OVERLAY -->
+<div id="curtain">
+  <div class="curtain left"></div>
+  <div class="curtain right"></div>
+  <div class="curtainContent">
+    <h1>Happy Birthday<br>my sweet little sister 🤗</h1>
+    <button id="openCurtain">🎁 Surprise Open</button>
+  </div>
+</div>
 
-    .heart::before,
-    .heart::after {
-      content: '';
-      position: absolute;
-      width: 18px;
-      height: 18px;
-      background: pink;
-      border-radius: 50%;
-    }
+<!-- BANNER -->
+<div id="banner">
+  <div class="string">
+    <span>H</span><span>A</span><span>P</span><span>P</span><span>Y</span>
+  </div>
+  <div class="string">
+    <span>B</span><span>I</span><span>R</span><span>T</span>
+    <span>H</span><span>D</span><span>A</span><span>Y</span>
+  </div>
+  <div id="name">
+    <div class="nameBalloon">M</div>
+    <div class="nameBalloon">I</div>
+    <div class="nameBalloon">T</div>
+    <div class="nameBalloon">A</div>
+    <div class="nameBalloon">L</div>
+    <div class="nameBalloon">I</div>
+  </div>
+</div>
 
-    .heart::before { top: -9px; left: 0; }
-    .heart::after { left: -9px; top: 0; }
+<!-- CAKE -->
+<div id="cake">
+  <div class="candles">
+    <div class="candle" id="c1">1</div>
+    <div class="candle" id="c7">7</div>
+  </div>
+  <button id="blowBtn">💨 Blow Candles</button>
+  <div id="cakeName">Mitali</div>
+  <div id="plate"></div>
+</div>
 
-    @keyframes float {
-      from { transform: translateY(110vh) rotate(45deg); }
-      to   { transform: translateY(-120vh) rotate(45deg); }
-    }
+<!-- AUDIO -->
+<audio id="curtainSound" src="curtain-chime.mp3"></audio>
+<audio id="instrumental" src="instrumental.mp3"></audio>
+<audio id="birthdaySong" src="birthday-song.mp3"></audio>
 
-    /* popup */
-    .overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.55);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-    }
-
-    .popup {
-      background: #fff;
-      color: #333;
-      padding: 26px;
-      border-radius: 16px;
-      max-width: 320px;
-      animation: pop 0.5s ease;
-    }
-
-    .popup h2 { color: #ff5e78; margin-top: 0; }
-
-    .popup button {
-      margin-top: 16px;
-      padding: 10px 22px;
-      border-radius: 22px;
-      border: none;
-      background: #ff5e78;
-      color: #fff;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
-    @keyframes pop {
-      from { transform: scale(0.6); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-
-    /* fixed UI area for all buttons */
-    #uiArea {
-      position: fixed;
-      top: 36px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      z-index: 2000;
-    }
-
-    .ui-btn {
-      padding: 14px 30px;
-      border-radius: 26px;
-      border: none;
-      font-size: 16px;
-      color: #fff;
-      background: #ff5e78;
-      cursor: pointer;
-      animation: pop 0.4s ease;
+<script src="script.js"></script>
+</body>
+</html>      animation: pop 0.4s ease;
     }
 
     .ui-btn.blue { background: #6ecbff; }
