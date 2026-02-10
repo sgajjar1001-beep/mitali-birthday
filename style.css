@@ -380,39 +380,7 @@ body{margin:0;font-family:'Segoe UI',sans-serif;overflow:hidden}
 }
 
 /* Secret Popup */
-#secretOverlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 200;
-}
 
-.secretBox {
-  background: white;
-  padding: 26px;
-  border-radius: 18px;
-  width: 90%;
-  max-width: 380px;
-  text-align: center;
-  animation: popIn .4s ease;
-  line-height: 1.6;
-}
-
-.secretBox h2 {
-  margin-top: 0;
-}
-
-.secretBox button {
-  margin-top: 18px;
-  padding: 10px 24px;
-  border: none;
-  border-radius: 20px;
-  background: #ff69b4;
-  color: white;
-  cursor: pointer;
 }
 /* 🎂 CAKE SLICE VISUAL */
 #cake.cutCakeVisual::after{
@@ -429,7 +397,68 @@ body{margin:0;font-family:'Segoe UI',sans-serif;overflow:hidden}
 }
 
 /* 🎉 CONFETTI */
-.confetti{
+.con/* 🔐 Secret Overlay */
+#secretOverlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.65);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px;              /* mobile safe spacing */
+  z-index:500;
+}
+
+/* 📱 Responsive Secret Box */
+.secretBox{
+  background:white;
+  width:100%;
+  max-width:500px;           /* big screens */
+  max-height:85vh;           /* prevent overflow */
+  overflow-y:auto;           /* scroll if long text */
+  padding:24px;
+  border-radius:18px;
+  text-align:center;
+  line-height:1.6;
+  animation:popIn .4s ease;
+}
+
+/* Scroll smooth */
+.secretBox::-webkit-scrollbar{
+  width:6px;
+}
+.secretBox::-webkit-scrollbar-thumb{
+  background:#ff69b4;
+  border-radius:10px;
+}
+
+.secretBox h2{
+  margin-top:0;
+}
+
+.secretBox p{
+  font-size:16px;
+}
+
+.secretBox button{
+  margin-top:18px;
+  padding:10px 24px;
+  border:none;
+  border-radius:20px;
+  background:#ff69b4;
+  color:white;
+  cursor:pointer;
+  font-weight:bold;
+  width:100%;
+}
+
+/* 📲 Small Devices Adjustment */
+@media(max-width:400px){
+  .secretBox{
+    padding:18px;
+    font-size:14px;
+  }
+}fetti{
   position:fixed;
   top:-10px;
   width:8px;
