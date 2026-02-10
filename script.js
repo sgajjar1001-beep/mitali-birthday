@@ -172,3 +172,57 @@ blowBtn.onclick = () => {
 
   cutBtn.onclick = cutCake;
 };
+function cutCake() {
+  const cutBtn = document.getElementById("cutCakeBtn");
+  if (cutBtn) cutBtn.remove();
+
+  cake.classList.add("cut");
+
+  setTimeout(() => {
+    showSecretButton();
+  }, 1200);
+}
+function showSecretButton() {
+  const secretBtn = document.createElement("button");
+  secretBtn.innerText = "🔐 Open Secret Message";
+  secretBtn.id = "secretBtn";
+
+  secretBtn.style.position = "fixed";
+  secretBtn.style.top = "14px";
+  secretBtn.style.left = "50%";
+  secretBtn.style.transform = "translateX(-50%)";
+  secretBtn.style.padding = "15px 34px";
+  secretBtn.style.border = "none";
+  secretBtn.style.borderRadius = "30px";
+  secretBtn.style.background = "#6a0dad";
+  secretBtn.style.color = "white";
+  secretBtn.style.fontWeight = "bold";
+  secretBtn.style.zIndex = "40";
+  secretBtn.style.cursor = "pointer";
+
+  document.body.appendChild(secretBtn);
+
+  secretBtn.onclick = showSecretPopup;
+}
+function showSecretPopup() {
+  const overlay = document.createElement("div");
+  overlay.id = "secretOverlay";
+
+  overlay.innerHTML = `
+    <div class="secretBox">
+      <h2>💌 Secret Message</h2>
+      <p>
+      Happy Birthday to my little sister, my bestie, and my whole world! 🎂💖<br><br>
+      You are not just my sister, you are my best friend, my partner in crime, and the biggest blessing of my life. Life feels more beautiful and meaningful because of you.<br><br>
+      Thank you for filling my days with laughter, love, and endless memories. I am so lucky to have a sister like you. No matter what happens, I will always stand by your side and protect you.<br><br>
+      If I get to choose in every lifetime, I would always choose to be your brother again and again. 🥹❤️<br><br>
+      May God bless you with happiness, success, good health, and all the love in the world. May all your dreams come true.<br><br>
+      Love you more than words can ever express.<br><br>
+      Happy Birthday once again, my forever bestie! 🎉💝
+      </p>
+      <button onclick="document.getElementById('secretOverlay').remove()">Close</button>
+    </div>
+  `;
+
+  document.body.appendChild(overlay);
+}
