@@ -214,10 +214,18 @@ function showEnvelope() {
         <div id="letterContent">
           <p>
           Happy Birthday to my little sister, my bestie, and my whole world! 🎂💖<br><br>
-          You are not just my sister, you are my best friend, my partner in crime, and the biggest blessing of my life.<br><br>
-          Thank you for filling my days with laughter and love.<br><br>
-          Love you more than words can ever express. 💝<br><br>
-          Happy Birthday once again, my forever bestie! 🎉
+
+          You are not just my sister, you are my best friend, my partner in crime, and the biggest blessing of my life. Life feels more beautiful and meaningful because of you.<br><br>
+
+          Thank you for filling my days with laughter, love, and endless memories. I am so lucky to have a sister like you. No matter what happens, I will always stand by your side and protect you.<br><br>
+
+          If I get to choose in every lifetime, I would always choose to be your brother again and again. 🥹❤️<br><br>
+
+          May God bless you with happiness, success, good health, and all the love in the world. May all your dreams come true.<br><br>
+
+          Love you more than words can ever express.<br><br>
+
+          Happy Birthday once again, my forever bestie! 🎉💝
           </p>
 
           <div style="margin-top:20px; text-align:center;">
@@ -225,20 +233,26 @@ function showEnvelope() {
           </div>
         </div>
 
-        <div id="ratingBox" style="display:none; margin-top:20px; text-align:center;">
-          <p><b>Kaisa laga surprise? ⭐</b></p>
-          <button onclick="handleRating(1)">1 ⭐</button>
-          <button onclick="handleRating(2)">2 ⭐</button>
-          <button onclick="handleRating(3)">3 ⭐</button>
-          <button onclick="handleRating(4)">4 ⭐</button>
-          <button onclick="handleRating(5)">5 ⭐</button>
+        <div id="replyOptions" style="display:none; margin-top:20px; text-align:center;">
+          <p><b>How would you like to reply? 💖</b></p>
+          <button onclick="makeCall()">📞 Call</button>
+          <button onclick="sendWhatsApp()">💬 WhatsApp</button>
         </div>
+
       </div>
     </div>
   `;
 
   document.body.appendChild(overlay);
 
+  setTimeout(() => {
+    const replyBtn = document.getElementById("replyBtn");
+    replyBtn.addEventListener("click", function () {
+      document.getElementById("letterContent").style.display = "none";
+      document.getElementById("replyOptions").style.display = "block";
+    });
+  }, 300);
+}
   // Reply button event
   setTimeout(() => {
     const replyBtn = document.getElementById("replyBtn");
@@ -252,19 +266,12 @@ function showEnvelope() {
 }
 function openLetter(env) {
   env.classList.add("open");
-
-  setTimeout(() => {
-    const rating = document.getElementById("ratingBox");
-    if (rating) rating.style.display = "block";
-  }, 1000);
+}
+function makeCall() {
+  window.location.href = "tel:8160774977";
 }
 
-function handleRating(value) {
-
-  if (value <= 3) {
-    window.location.href = "tel:8160774977";
-  } else {
-    const message = encodeURIComponent("I loved the surprise! 💖 It was amazing!");
-    window.location.href = "https://wa.me/918160774977?text=" + message;
-  }
+function sendWhatsApp() {
+  const message = encodeURIComponent("I loved the surprise 💖 It was beautiful!");
+  window.location.href = "https://wa.me/918160774977?text=" + message;
 }
