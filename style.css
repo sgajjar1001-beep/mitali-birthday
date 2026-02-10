@@ -367,3 +367,50 @@ body{margin:0;font-family:'Segoe UI',sans-serif;overflow:hidden}
   0%,100%{transform:translateY(0)}
   50%{transform:translateY(-14px)}
 }
+
+/* Cake Slice Effect */
+#cake.cut {
+  animation: cakeSlice 1s ease forwards;
+}
+
+@keyframes cakeSlice {
+  0% { transform: translateX(-50%) rotate(0deg); }
+  50% { transform: translateX(-50%) rotate(-4deg); }
+  100% { transform: translateX(-50%) rotate(0deg); }
+}
+
+/* Secret Popup */
+#secretOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 200;
+}
+
+.secretBox {
+  background: white;
+  padding: 26px;
+  border-radius: 18px;
+  width: 90%;
+  max-width: 380px;
+  text-align: center;
+  animation: popIn .4s ease;
+  line-height: 1.6;
+}
+
+.secretBox h2 {
+  margin-top: 0;
+}
+
+.secretBox button {
+  margin-top: 18px;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 20px;
+  background: #ff69b4;
+  color: white;
+  cursor: pointer;
+}
