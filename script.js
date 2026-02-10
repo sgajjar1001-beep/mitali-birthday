@@ -210,21 +210,25 @@ function showEnvelope() {
     <div class="envelope" onclick="openLetter(this)">
       <div class="flap"></div>
       <div class="letter">
-        <p>
-        Happy Birthday to my little sister, my bestie, and my whole world! 🎂💖<br><br>
-        You are not just my sister, you are my best friend, my partner in crime, and the biggest blessing of my life. Life feels more beautiful and meaningful because of you.<br><br>
-        Thank you for filling my days with laughter, love, and endless memories. I am so lucky to have a sister like you. No matter what happens, I will always stand by your side and protect you.<br><br>
-        If I get to choose in every lifetime, I would always choose to be your brother again and again. 🥹❤️<br><br>
-        May God bless you with happiness, success, good health, and all the love in the world. May all your dreams come true.<br><br>
-        Love you more than words can ever express.<br><br>
-        Happy Birthday once again, my forever bestie! 🎉💝
-        </p>
+        <div id="letterContent">
+          <p>
+          Happy Birthday to my little sister, my bestie, and my whole world! 🎂💖<br><br>
+          You are not just my sister, you are my best friend, my partner in crime, and the biggest blessing of my life.<br><br>
+          Love you more than words can ever express. 💝
+          </p>
+        </div>
+
+        <div id="ratingBox" style="display:none; margin-top:20px;">
+          <p><b>How was the surprise? ⭐</b></p>
+          <button onclick="handleRating(1)">1 ⭐</button>
+          <button onclick="handleRating(2)">2 ⭐</button>
+          <button onclick="handleRating(3)">3 ⭐</button>
+          <button onclick="handleRating(4)">4 ⭐</button>
+          <button onclick="handleRating(5)">5 ⭐</button>
+        </div>
       </div>
     </div>
   `;
 
   document.body.appendChild(overlay);
-}
-function openLetter(env) {
-  env.classList.add("open");
 }
