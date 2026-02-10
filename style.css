@@ -432,3 +432,12 @@ body{margin:0;font-family:'Segoe UI',sans-serif;overflow:hidden}
   transform:translateX(-50%) translateY(-120px);
   opacity:1;
 }
+#ratingBox button{
+  margin:5px;
+  padding:8px 12px;
+  border:none;
+  border-radius:12px;
+  background:#ff69b4;
+  color:white;
+  cursor:pointer;
+}
