@@ -153,66 +153,13 @@ blowBtn.onclick = () => {
   instrumental.pause();
   birthdaySong.play();
 
-  // ❌ Remove Blow Button
+  // ❌ Remove blow button
   blowBtn.remove();
 
-  // 🎂 Show Cut Cake Button
-  const cutBtn = document.createElement("button");
-  cutBtn.innerText = "🎂 Cut the Cake";
-  cutBtn.id = "cutCakeBtn";
-  cutBtn.style.position = "absolute";
-  cutBtn.style.top = "-120px";
-  cutBtn.style.left = "50%";
-  cutBtn.style.transform = "translateX(-50%)";
-  cutBtn.style.padding = "10px 22px";
-  cutBtn.style.borderRadius = "20px";
-  cutBtn.style.border = "none";
-  cutBtn.style.background = "#ff1493";
-  cutBtn.style.color = "white";
-  cutBtn.style.cursor = "pointer";
-
-  cake.appendChild(cutBtn);
-
-  cutBtn.onclick = cutCake;
+  showLetterButton();
 };
-function cutCake() {
-  const cutBtn = document.getElementById("cutCakeBtn");
-  if (cutBtn) cutBtn.remove();
 
-  cake.classList.add("cutCakeVisual");
 
-  launchConfetti();
-  launchFireworks();
-
-  setTimeout(() => {
-    showSecretButton();
-  }, 2000);
-}
-function launchConfetti() {
-  for (let i = 0; i < 80; i++) {
-    let conf = document.createElement("div");
-    conf.className = "confetti";
-    conf.style.left = Math.random() * 100 + "%";
-    conf.style.background = `hsl(${Math.random()*360},100%,50%)`;
-    conf.style.animationDuration = (2 + Math.random()*2) + "s";
-    document.body.appendChild(conf);
-
-    setTimeout(() => conf.remove(), 4000);
-  }
-}
-function launchFireworks() {
-  for (let i = 0; i < 6; i++) {
-    setTimeout(() => {
-      let fire = document.createElement("div");
-      fire.className = "firework";
-      fire.style.left = Math.random() * 100 + "%";
-      fire.style.top = Math.random() * 50 + "%";
-      document.body.appendChild(fire);
-
-      setTimeout(() => fire.remove(), 1000);
-    }, i * 400);
-  }
-}
 }
 function showSecretButton() {
   const secretBtn = document.createElement("button");
@@ -236,25 +183,52 @@ function showSecretButton() {
 
   secretBtn.onclick = showSecretPopup;
 }
-function showSecretPopup() {
+function showLetterButton() {
+  const letterBtn = document.createElement("button");
+  letterBtn.innerText = "💌 Open Secret Letter";
+  letterBtn.id = "letterBtn";
+
+  letterBtn.style.position = "fixed";
+  letterBtn.style.top = "14px";
+  letterBtn.style.left = "50%";
+  letterBtn.style.transform = "translateX(-50%)";
+  letterBtn.style.padding = "15px 34px";
+  letterBtn.style.border = "none";
+  letterBtn.style.borderRadius = "30px";
+  letterBtn.style.background = "#ff69b4";
+  letterBtn.style.color = "white";
+  letterBtn.style.fontWeight = "bold";
+  letterBtn.style.zIndex = "40";
+  letterBtn.style.cursor = "pointer";
+
+  document.body.appendChild(letterBtn);
+
+  letterBtn.onclick = showEnvelope;
+}
+
+function showEnvelope() {
   const overlay = document.createElement("div");
-  overlay.id = "secretOverlay";
+  overlay.id = "letterOverlay";
 
   overlay.innerHTML = `
-    <div class="secretBox">
-      <h2>💌 Secret Message</h2>
-      <p>
-      Happy Birthday to my little sister, my bestie, and my whole world! 🎂💖<br><br>
-      You are not just my sister, you are my best friend, my partner in crime, and the biggest blessing of my life. Life feels more beautiful and meaningful because of you.<br><br>
-      Thank you for filling my days with laughter, love, and endless memories. I am so lucky to have a sister like you. No matter what happens, I will always stand by your side and protect you.<br><br>
-      If I get to choose in every lifetime, I would always choose to be your brother again and again. 🥹❤️<br><br>
-      May God bless you with happiness, success, good health, and all the love in the world. May all your dreams come true.<br><br>
-      Love you more than words can ever express.<br><br>
-      Happy Birthday once again, my forever bestie! 🎉💝
-      </p>
-      <button onclick="document.getElementById('secretOverlay').remove()">Close</button>
+    <div class="envelope" onclick="openLetter(this)">
+      <div class="flap"></div>
+      <div class="letter">
+        <p>
+        Happy Birthday to my little sister, my bestie, and my whole world! 🎂💖<br><br>
+        You are not just my sister, you are my best friend, my partner in crime, and the biggest blessing of my life. Life feels more beautiful and meaningful because of you.<br><br>
+        Thank you for filling my days with laughter, love, and endless memories. I am so lucky to have a sister like you. No matter what happens, I will always stand by your side and protect you.<br><br>
+        If I get to choose in every lifetime, I would always choose to be your brother again and again. 🥹❤️<br><br>
+        May God bless you with happiness, success, good health, and all the love in the world. May all your dreams come true.<br><br>
+        Love you more than words can ever express.<br><br>
+        Happy Birthday once again, my forever bestie! 🎉💝
+        </p>
+      </div>
     </div>
   `;
 
   document.body.appendChild(overlay);
+}
+function openLetter(env) {
+  env.classList.add("open");
 }
