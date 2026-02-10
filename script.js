@@ -232,3 +232,23 @@ function showEnvelope() {
 
   document.body.appendChild(overlay);
 }
+function openLetter(env) {
+  env.classList.add("open");
+
+  setTimeout(() => {
+    const rating = document.getElementById("ratingBox");
+    if (rating) rating.style.display = "block";
+  }, 1000);
+}
+
+function handleRating(value) {
+
+  if (value <= 3) {
+    // 📞 Call
+    window.location.href = "tel:8160774977";
+  } else {
+    // 💬 WhatsApp
+    const message = encodeURIComponent("I loved the surprise! 💖 It was amazing!");
+    window.location.href = "https://wa.me/9168160774977?text=" + message;
+  }
+}
