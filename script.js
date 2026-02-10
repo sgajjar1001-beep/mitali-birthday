@@ -253,17 +253,7 @@ function showEnvelope() {
     });
   }, 300);
 }
-  // Reply button event
-  setTimeout(() => {
-    const replyBtn = document.getElementById("replyBtn");
-    if (replyBtn) {
-      replyBtn.addEventListener("click", function () {
-        document.getElementById("letterContent").style.display = "none";
-        document.getElementById("ratingBox").style.display = "block";
-      });
-    }
-  }, 300);
-}
+
 function openLetter(env) {
   env.classList.add("open");
 }
