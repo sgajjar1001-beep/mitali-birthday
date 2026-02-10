@@ -433,12 +433,13 @@ body{margin:0;font-family:'Segoe UI',sans-serif;overflow:hidden}
   opacity:1;
 }
 #replyBtn,
-#ratingBox button{
+#replyOptions button{
   margin:6px;
-  padding:8px 14px;
+  padding:10px 16px;
   border:none;
-  border-radius:12px;
+  border-radius:14px;
   background:#ff69b4;
   color:white;
   cursor:pointer;
+  font-weight:bold;
 }
