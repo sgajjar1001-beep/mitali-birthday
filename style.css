@@ -368,132 +368,6 @@ body{margin:0;font-family:'Segoe UI',sans-serif;overflow:hidden}
   50%{transform:translateY(-14px)}
 }
 
-/* Cake Slice Effect */
-#cake.cut {
-  animation: cakeSlice 1s ease forwards;
-}
-
-@keyframes cakeSlice {
-  0% { transform: translateX(-50%) rotate(0deg); }
-  50% { transform: translateX(-50%) rotate(-4deg); }
-  100% { transform: translateX(-50%) rotate(0deg); }
-}
-
-/* Secret Popup */
-
-}
-/* 🎂 CAKE SLICE VISUAL */
-#cake.cutCakeVisual::after{
-  content:"";
-  position:absolute;
-  right:20px;
-  top:40px;
-  width:0;
-  height:0;
-  border-left:40px solid #3b1d0a;
-  border-top:40px solid transparent;
-  border-bottom:40px solid transparent;
-  transform:rotate(8deg);
-}
-
-/* 🎉 CONFETTI */
-.con/* 🔐 Secret Overlay */
-#secretOverlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.65);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:20px;              /* mobile safe spacing */
-  z-index:500;
-}
-
-/* 📱 Responsive Secret Box */
-.secretBox{
-  background:white;
-  width:100%;
-  max-width:500px;           /* big screens */
-  max-height:85vh;           /* prevent overflow */
-  overflow-y:auto;           /* scroll if long text */
-  padding:24px;
-  border-radius:18px;
-  text-align:center;
-  line-height:1.6;
-  animation:popIn .4s ease;
-}
-
-/* Scroll smooth */
-.secretBox::-webkit-scrollbar{
-  width:6px;
-}
-.secretBox::-webkit-scrollbar-thumb{
-  background:#ff69b4;
-  border-radius:10px;
-}
-
-.secretBox h2{
-  margin-top:0;
-}
-
-.secretBox p{
-  font-size:16px;
-}
-
-.secretBox button{
-  margin-top:18px;
-  padding:10px 24px;
-  border:none;
-  border-radius:20px;
-  background:#ff69b4;
-  color:white;
-  cursor:pointer;
-  font-weight:bold;
-  width:100%;
-}
-
-/* 📲 Small Devices Adjustment */
-@media(max-width:400px){
-  .secretBox{
-    padding:18px;
-    font-size:14px;
-  }
-}fetti{
-  position:fixed;
-  top:-10px;
-  width:8px;
-  height:14px;
-  opacity:0.9;
-  z-index:200;
-  animation:confettiFall linear forwards;
-}
-
-@keyframes confettiFall{
-  to{
-    transform:translateY(100vh) rotate(720deg);
-  }
-}
-
-/* 🎆 FIREWORK */
-.firework{
-  position:fixed;
-  width:10px;
-  height:10px;
-  background:yellow;
-  border-radius:50%;
-  box-shadow:
-    0 0 10px yellow,
-    0 0 20px red,
-    0 0 30px orange;
-  animation:explode 1s ease-out forwards;
-  z-index:150;
-}
-
-@keyframes explode{
-  0%{transform:scale(0.5);opacity:1}
-  100%{transform:scale(4);opacity:0}
-}
-
 /* Overlay */
 #letterOverlay{
   position:fixed;
@@ -510,6 +384,7 @@ body{margin:0;font-family:'Segoe UI',sans-serif;overflow:hidden}
 .envelope{
   position:relative;
   width:300px;
+  max-width:90%;
   height:200px;
   background:#ff69b4;
   border-radius:6px;
@@ -530,7 +405,7 @@ body{margin:0;font-family:'Segoe UI',sans-serif;overflow:hidden}
   transition:.6s;
 }
 
-/* Letter inside */
+/* Letter */
 .letter{
   position:absolute;
   top:20px;
@@ -548,7 +423,7 @@ body{margin:0;font-family:'Segoe UI',sans-serif;overflow:hidden}
   line-height:1.6;
 }
 
-/* When opened */
+/* Open animation */
 .envelope.open .flap{
   transform:rotateX(180deg);
 }
