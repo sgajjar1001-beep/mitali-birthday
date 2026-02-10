@@ -153,15 +153,18 @@ blowBtn.onclick = () => {
   instrumental.pause();
   birthdaySong.play();
 
+  // ❌ Remove Blow Button
+  blowBtn.remove();
+
   // 🎂 Show Cut Cake Button
   const cutBtn = document.createElement("button");
   cutBtn.innerText = "🎂 Cut the Cake";
   cutBtn.id = "cutCakeBtn";
   cutBtn.style.position = "absolute";
-  cutBtn.style.top = "-150px";
+  cutBtn.style.top = "-120px";
   cutBtn.style.left = "50%";
   cutBtn.style.transform = "translateX(-50%)";
-  cutBtn.style.padding = "8px 20px";
+  cutBtn.style.padding = "10px 22px";
   cutBtn.style.borderRadius = "20px";
   cutBtn.style.border = "none";
   cutBtn.style.background = "#ff1493";
@@ -176,11 +179,40 @@ function cutCake() {
   const cutBtn = document.getElementById("cutCakeBtn");
   if (cutBtn) cutBtn.remove();
 
-  cake.classList.add("cut");
+  cake.classList.add("cutCakeVisual");
+
+  launchConfetti();
+  launchFireworks();
 
   setTimeout(() => {
     showSecretButton();
-  }, 1200);
+  }, 2000);
+}
+function launchConfetti() {
+  for (let i = 0; i < 80; i++) {
+    let conf = document.createElement("div");
+    conf.className = "confetti";
+    conf.style.left = Math.random() * 100 + "%";
+    conf.style.background = `hsl(${Math.random()*360},100%,50%)`;
+    conf.style.animationDuration = (2 + Math.random()*2) + "s";
+    document.body.appendChild(conf);
+
+    setTimeout(() => conf.remove(), 4000);
+  }
+}
+function launchFireworks() {
+  for (let i = 0; i < 6; i++) {
+    setTimeout(() => {
+      let fire = document.createElement("div");
+      fire.className = "firework";
+      fire.style.left = Math.random() * 100 + "%";
+      fire.style.top = Math.random() * 50 + "%";
+      document.body.appendChild(fire);
+
+      setTimeout(() => fire.remove(), 1000);
+    }, i * 400);
+  }
+}
 }
 function showSecretButton() {
   const secretBtn = document.createElement("button");
