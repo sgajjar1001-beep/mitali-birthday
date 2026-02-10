@@ -152,4 +152,23 @@ blowBtn.onclick = () => {
 
   instrumental.pause();
   birthdaySong.play();
+
+  // 🎂 Show Cut Cake Button
+  const cutBtn = document.createElement("button");
+  cutBtn.innerText = "🎂 Cut the Cake";
+  cutBtn.id = "cutCakeBtn";
+  cutBtn.style.position = "absolute";
+  cutBtn.style.top = "-150px";
+  cutBtn.style.left = "50%";
+  cutBtn.style.transform = "translateX(-50%)";
+  cutBtn.style.padding = "8px 20px";
+  cutBtn.style.borderRadius = "20px";
+  cutBtn.style.border = "none";
+  cutBtn.style.background = "#ff1493";
+  cutBtn.style.color = "white";
+  cutBtn.style.cursor = "pointer";
+
+  cake.appendChild(cutBtn);
+
+  cutBtn.onclick = cutCake;
 };
