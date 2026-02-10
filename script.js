@@ -1,4 +1,9 @@
-
+const openCurtain = document.getElementById("openCurtain");
+const curtain = document.getElementById("curtain");
+const background = document.getElementById("background");
+const blowBtn = document.getElementById("blowBtn");
+const c1 = document.getElementById("c1");
+const c7 = document.getElementById("c7");
 const box = document.getElementById("box");
 const msg = document.getElementById("msg");
 const choices = document.getElementById("choices");
@@ -157,27 +162,7 @@ blowBtn.onclick = () => {
 
   showLetterButton();
 };
-  const secretBtn = document.createElement("button");
-  secretBtn.innerText = "🔐 Open Secret Message";
-  secretBtn.id = "secretBtn";
-
-  secretBtn.style.position = "fixed";
-  secretBtn.style.top = "14px";
-  secretBtn.style.left = "50%";
-  secretBtn.style.transform = "translateX(-50%)";
-  secretBtn.style.padding = "15px 34px";
-  secretBtn.style.border = "none";
-  secretBtn.style.borderRadius = "30px";
-  secretBtn.style.background = "#6a0dad";
-  secretBtn.style.color = "white";
-  secretBtn.style.fontWeight = "bold";
-  secretBtn.style.zIndex = "40";
-  secretBtn.style.cursor = "pointer";
-
-  document.body.appendChild(secretBtn);
-
-  secretBtn.onclick = showSecretPopup;
-}
+  
 function showLetterButton() {
   const letterBtn = document.createElement("button");
   letterBtn.innerText = "💌 Open Secret Letter";
