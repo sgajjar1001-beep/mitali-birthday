@@ -209,17 +209,24 @@ function showEnvelope() {
   overlay.innerHTML = `
     <div class="envelope" onclick="openLetter(this)">
       <div class="flap"></div>
+
       <div class="letter">
         <div id="letterContent">
           <p>
           Happy Birthday to my little sister, my bestie, and my whole world! 🎂💖<br><br>
           You are not just my sister, you are my best friend, my partner in crime, and the biggest blessing of my life.<br><br>
-          Love you more than words can ever express. 💝
+          Thank you for filling my days with laughter and love.<br><br>
+          Love you more than words can ever express. 💝<br><br>
+          Happy Birthday once again, my forever bestie! 🎉
           </p>
+
+          <div style="margin-top:20px; text-align:center;">
+            <button id="replyBtn">💌 Reply</button>
+          </div>
         </div>
 
-        <div id="ratingBox" style="display:none; margin-top:20px;">
-          <p><b>How was the surprise? ⭐</b></p>
+        <div id="ratingBox" style="display:none; margin-top:20px; text-align:center;">
+          <p><b>Kaisa laga surprise? ⭐</b></p>
           <button onclick="handleRating(1)">1 ⭐</button>
           <button onclick="handleRating(2)">2 ⭐</button>
           <button onclick="handleRating(3)">3 ⭐</button>
@@ -231,6 +238,17 @@ function showEnvelope() {
   `;
 
   document.body.appendChild(overlay);
+
+  // Reply button event
+  setTimeout(() => {
+    const replyBtn = document.getElementById("replyBtn");
+    if (replyBtn) {
+      replyBtn.addEventListener("click", function () {
+        document.getElementById("letterContent").style.display = "none";
+        document.getElementById("ratingBox").style.display = "block";
+      });
+    }
+  }, 300);
 }
 function openLetter(env) {
   env.classList.add("open");
@@ -244,11 +262,9 @@ function openLetter(env) {
 function handleRating(value) {
 
   if (value <= 3) {
-    // 📞 Call
     window.location.href = "tel:8160774977";
   } else {
-    // 💬 WhatsApp
     const message = encodeURIComponent("I loved the surprise! 💖 It was amazing!");
-    window.location.href = "https://wa.me/9168160774977?text=" + message;
+    window.location.href = "https://wa.me/918160774977?text=" + message;
   }
 }
