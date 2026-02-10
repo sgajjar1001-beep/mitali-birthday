@@ -1,4 +1,9 @@
-
+const openCurtain = document.getElementById("openCurtain");
+const curtain = document.getElementById("curtain");
+const background = document.getElementById("background");
+const blowBtn = document.getElementById("blowBtn");
+const c1 = document.getElementById("c1");
+const c7 = document.getElementById("c7");
 const box = document.getElementById("box");
 const msg = document.getElementById("msg");
 const choices = document.getElementById("choices");
@@ -157,7 +162,6 @@ blowBtn.onclick = () => {
 
   showLetterButton();
 };
-function showSecretButton() {
   const secretBtn = document.createElement("button");
   secretBtn.innerText = "🔐 Open Secret Message";
   secretBtn.id = "secretBtn";
